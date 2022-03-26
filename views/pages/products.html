@@ -15,10 +15,119 @@
         <script src="../backend/app.js" defer></script>
     </head>
 
-
-
-
     <body>
 
+        <!-- NAV BAR -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">WHMS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Pages
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="customers.html">Customers</a></li>
+                                <li><a class="dropdown-item" href="products.html">Products</a></li>
+                                <li><a class="dropdown-item" href="suppliers.html">Suppliers</a></li>
+                                <li><a class="dropdown-item" href="inventory.html">Inventory</a></li>
+                                <li><a class="dropdown-item" href="employees.html">Employees</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    
+        <!-- BODY INFORMATION -->
+        <div class="container mb-3 mt-3">
+            <h5 class="mb-3 mt-3 text-center">Products</h5>
+    
+            <div class="row">
+                <!-- Table Section START -->
+                <div class="col">
+                    <div class="container text-center mt-3 mb-3"> Customer's Records</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Table Section END -->
+    
+                <!-- Form Section START -->
+                <div class="col mt-3 mb-3">
+                    <div class="container text-center mt-3 mb-3"> Create a new product record</div>
+                    <div class="container">
+                        <div class="card">
+                            <div class="container">
+                                <form class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="productName" class="form-label">Product Name</label>
+                                        <input type="text" class="form-control" id="productName" placeholder="Marshmallow">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="unitPrice" class="form-label">Unit Price</label>
+                                        <input type="text" class="form-control" id="unitPrice"
+                                            placeholder="$0.00">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="productDescription" class="form-label">Description</label>
+                                        <input type="text" class="form-control" id="productDescription">
+                                    </div>
+                                    
+                                    <div class="col-md-7">
+                                        <label for="packagingUnit" class="form-label">Packaging Unit</label>
+                                        <select id="packagingUnit" class="form-select">
+                                            <option selected>Choose...</option>
+                                            <option value="Item">Item</option>
+                                            <option value="Box">Box</option>
+                                            <option value="Palett">Palette</option>
+                                            <option value="Kg">Kg</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <label for="productCategory" class="form-label">Category</label>
+                                        <select id="productCategory" class="form-select">
+                                            <option selected>Choose...</option>
+                                            <option value="Beverage">Beverage</option>
+                                            <option value="Bread & Bakery">Bread & Bakery</option>
+                                            <option value="Breakfast & Cereal">Breakfast & Cereal</option>
+                                            <option value="Cookies, Snacks & Candy">Cookies, Snacks & Candy</option>
+                                            <option value="Grains, Pastas & Sides">Grains, Pastas & Sides</option>
+                                            <option value="Canned Goods & Soups">Canned Goods & Soups</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 text-center mb-3 mt-3">
+                                        <button type="submit" class="btn btn-primary ">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Form Section END -->
+            </div>
+        </div>
     </body>
+    
 </html>
