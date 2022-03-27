@@ -40,3 +40,7 @@ FBFEF9 - BABY POWDER (WHITISH)
     border-radius: 15px;
     background-color: #9C61EC;
 }
+
+.hidden{
+    display:none;
+}
