@@ -25,12 +25,11 @@ router.get('/customers', async (req, res) => {
 //@ route   POST /create_customer
 router.post('/create_customers/', async (req, res) => {
     try {
-
         let newReq = [...req.body];                                                 // Create a new array of obejct using destructor                              
         newReq[0]['createdAt'] = Date.now();                                        // Create a key value pair with the date in the object.
         
         let response = await Customer.create(req.body)
-        .then((response)=> {
+        .then((response) => {
             console.log(response);
         })
         res.status(200).send(response)
@@ -44,10 +43,17 @@ router.post('/create_customers/', async (req, res) => {
 
 //@ desc    Customer
 //@ route   Delete /customer
-router.post('/delete_customers:id/', async (req, res) => {
+router.post('/delete_customers/', async (req, res) => {
     try {
+        const response = await Customer.deleteOne({_id : req.body[0]['customerId']})
+        .then((response) => {
+            console.log(response);
+        })
+        res.status(200).send(response);
+        console.log(req.body)
 
     } catch (error) {
+        res.status(500).send(error);
         console.error(error);
         console.log(error);
     }
