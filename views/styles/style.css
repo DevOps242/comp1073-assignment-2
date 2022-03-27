@@ -18,10 +18,25 @@ FBFEF9 - BABY POWDER (WHITISH)
 }
 
 .fa-pen{
-    color: #6610f2;
+    color: #9C61EC;
 }
 
 
 .fa-trash-can{
     color: #dc3545;
+}
+
+.warning-message{
+    color: #dc3545;
+    text-align: center;
+    font-size: 17px;
+}
+
+#formErrorMessage {
+    min-width:100%;
+    color: #FBFEF9;
+    display:none;
+    border:2px solid #ccc;
+    border-radius: 15px;
+    background-color: #9C61EC;
 }
