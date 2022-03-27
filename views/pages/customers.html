@@ -136,7 +136,7 @@
                                         <option selected>Select a Country...</option>
                                         <option value="USA">USA</option>
                                         <option value="Canada">Canada</option>
-                                        <!-- Add liste of countries above. -->
+                                         <!-- Add liste of countries above. -->
                                     </select>
                                 </div>
                                 <div class="col-12 text-center mb-3 mt-3">
@@ -155,7 +155,6 @@
 </html>
 
 <script>
-
     // ******************************************   READ DATA FROM DATABASE START   ******************************************
     // Make a fetch call to the Express API endpoint.
     fetch('http://localhost:3000/customers')
@@ -266,14 +265,14 @@
         .then((response) => {
             console.log(response);
             if (response['status'] === 200) {
-                alert('Customer has been added successfully... \n\nThe browser will reload after 3 seconds of pressing the Ok button on this alert!');
+                alert('Customer has been added successfully... \n\nYou\'r browser will refresh after 1 seconds of pressing the Ok button on this alert!');
                 console.log('Customer added successfully');
 
                 // wait for three seconds and refresh page.
                 setTimeout(() => { 
                     // Refresh the page
                     location.reload();
-                }, 3000);
+                }, 1000);
             } else {
                 // errorMessage.value = "There was an error adding customer";
                 // errorMessage.style.display = true;
@@ -285,12 +284,18 @@
             console.log(error);
         })
     }
-   
-  // ******************************************   ADD DATA TO DATABASE END   ******************************************
+// ******************************************   ADD DATA TO DATABASE END   ******************************************
 
+// ******************************************   EDIT DATA IN DATABASE START   ******************************************
     const editRowData = () => {}
+
+// ******************************************   EDIT DATA IN DATABASE END   ******************************************
+
+// ******************************************   DELETE DATA FROM DATABASE START   ******************************************
     const deleteRowData = () => {
         console.log('testing');
     }
+
+// ******************************************   DELETE DATA FROM DATABASE END   ******************************************
 
 </script>

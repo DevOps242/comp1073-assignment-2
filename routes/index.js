@@ -22,7 +22,7 @@ router.get('/customers', async (req, res) => {
 })
 
 //@ desc    Customer
-//@ route   ADD /customer
+//@ route   POST /create_customer
 router.post('/create_customers/', async (req, res) => {
     try {
 
@@ -34,9 +34,7 @@ router.post('/create_customers/', async (req, res) => {
             console.log(response);
         })
         res.status(200).send(response)
-        // res.redirect('/customers.html');
-         
-
+    
     } catch (error) {
         res.status(500).send(error);
         console.error(error);
