@@ -6,7 +6,22 @@ FBFEF9 - BABY POWDER (WHITISH)
 11246D - DARK BLUE
 */
 
-
+.container {
+    min-width: 100%;
+}
 .navbar-light {
     background-color: #9C61EC;
+}
+
+.fa-solid:hover {
+    cursor: pointer;
+}
+
+.fa-pen{
+    color: #6610f2;
+}
+
+
+.fa-trash-can{
+    color: #dc3545;
 }

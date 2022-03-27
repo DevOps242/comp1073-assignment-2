@@ -18,8 +18,8 @@
     <!-- CSS  -->
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
 
-    <!-- javascript -->
-    <script src="app.js" defer></script>
+    <!-- javascript
+    <script src="app.js" defer></script> -->
 </head>
 
 <body>
@@ -63,68 +63,39 @@
             <!-- Table Section START -->
             <div class="col">
                 <div class="container text-center mt-3 mb-3"> Customer's Records</div>
-                <table class="table">
+                <table class="table" id="customersTable">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Customer</th>
+                            <th scope="col">Customer Name</th>
                             <th scope="col">Rep's Name</th>
                             <th scope="col">Phone Number</th>
+                            <th scope="col">Company Address</th>
                             <th scope="col">Country</th>
-                            <th scope="col"></th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>2530</td>
-                            <td>Walmart</td>
-                            <td>June Jackson</td>
-                            <td>807-932-0900</td>
-                            <td>Canada</td>
-                            <td>
-                                <div class="row">
-                                    <div class="col">
-                                        <i class="fa-solid fa-pen"></i>
+                    <tbody id="tableBody">
+                        <tr >
+                            <script id="tableRows" type="text/html">
+                                <td>{ID}</td>
+                                <td>{CUSTOMERNAME}</td>
+                                <td>{CUSTOMERREPNAME}</td>
+                                <td>{CUSTOMERPHONENUMBER}</td>
+                                <td>{CUSTOMERADDRESS}</td>
+                                <td>{CUSTOMERCOUNTRY}</td>
+                                <td>
+                                   <div>
+                                        <i class="fa-solid fa-pen" id="editHandler"></i>
                                     </div>
-                                    <div class="col">
-                                        <i class="fa-solid fa-trash-can"></i>
+                                </td>
+                                <td>
+                                    <div>
+                                        <i class="fa-solid fa-trash-can" id="deleteHandler" onclick="deleteRowData()"></i>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2530</td>
-                            <td>Walmart</td>
-                            <td>June Jackson</td>
-                            <td>807-932-0900</td>
-                            <td>Canada</td>
-                            <td>
-                                <div class="row">
-                                    <div class="col">
-                                        <i class="fa-solid fa-pen"></i>
-                                    </div>
-                                    <div class="col">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2530</td>
-                            <td>Walmart</td>
-                            <td>Marvin Jackson</td>
-                            <td>807-932-0900</td>
-                            <td>USA</td>
-                            <td>
-                                <div class="row">
-                                    <div class="col">
-                                        <i class="fa-solid fa-pen"></i>
-                                    </div>
-                                    <div class="col">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </div>
-                                </div>
-                            </td>
+                                </td>
+                            </script>
                         </tr>
                     </tbody>
                 </table>
@@ -144,7 +115,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="customerRep" class="form-label">Customer Rep</label>
-                                    <input type="text" class="form-control" id="customeryRep">
+                                    <input type="text" class="form-control" id="customeryRep" placeholder="John Doe">
                                 </div>
                                 <div class="col-12">
                                     <label for="customerAddress" class="form-label">Customer Address</label>
@@ -158,14 +129,14 @@
                                 <div class="col-md-5">
                                     <label for="customerCountry" class="form-label">Country</label>
                                     <select id="customerCountry" class="form-select">
-                                        <option selected>Choose...</option>
+                                        <option selected>Select a Country...</option>
                                         <option value="USA">USA</option>
                                         <option value="Canada">Canada</option>
                                         <!-- Add liste of countries above. -->
                                     </select>
                                 </div>
                                 <div class="col-12 text-center mb-3 mt-3">
-                                    <button type="submit" class="btn btn-primary ">Submit</button>
+                                    <button type="submit" class="btn btn-primary ">Add Customer</button>
                                 </div>
                             </form>
                         </div>
@@ -178,3 +149,60 @@
 </body>
 
 </html>
+
+<script>
+    // Make a fetch call to the Express API endpoint.
+    fetch('http://localhost:3000/customers')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            if (data.count() != 0 ) {
+                displayCustomers(data);
+            }  else {
+                // Display no records to show.
+            }
+        })
+        .catch(function (err) {
+            console.log('error: ' + err);
+        });
+
+    // arrow function that displays the customers to table.
+    const displayCustomers = (data) => {
+        
+        data.forEach((item, index) => {
+            createTableRow(item, index);
+        })
+    }
+
+    // function that will generate a table row template and replace the keys for the value.
+    const createTableRow = (item, index) => {
+
+        // Create a temporary <div> to load into
+        var tr = document.createElement('tr');
+        // div.setAttribute('class', 'someClass');
+        tr.innerHTML = document.getElementById('tableRows').innerHTML;
+
+        // You could optionally even do a little bit of string templating
+        tr.innerHTML = tr.innerHTML
+            .replace(/{ID}/g, index)
+            .replace(/{CUSTOMERNAME}/g, item['customerName'])
+            .replace(/{CUSTOMERREPNAME}/g, item['customerRepName'])
+            .replace(/{CUSTOMERPHONENUMBER}/g, item['customerPhoneNumber'])
+            .replace(/{CUSTOMERADDRESS}/g, item['customerAddress'])
+            .replace(/{CUSTOMERCOUNTRY}/g, item['customerCountry'])
+
+        // Write the <div> to the HTML container
+        document.getElementById('tableBody').appendChild(tr);
+    }
+
+    const displayRowEmpty = () => {
+
+    }
+
+
+    const deleteRowData = () => {
+        console.log('testing');
+    }
+
+</script>

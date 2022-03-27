@@ -9,8 +9,7 @@ const connectDB = async () => {
     try {
         // connect to the mongo service, with optional configs.
         const conn = await mongoose.connect(process.env.MONGO_URI, {
-            // useNewURLParser: true, 
-            // useUnifiedTopolgy: true
+            useNewURLParser: true
 
         })
         console.log(`MongoDB Connected: ${conn.connection.host}`);
