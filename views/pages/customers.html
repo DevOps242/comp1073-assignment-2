@@ -58,7 +58,6 @@
     <!-- BODY INFORMATION -->
     <div class="container mb-3 mt-3">
         <h5 class="mb-3 mt-3 text-center">Customers</h5>
-
         <div class="row">
             <!-- Table Section START -->
             <div class="col">
@@ -206,18 +205,17 @@
     }
 
     const displayRowEmpty = () => {
-        // Create a temporary <tr> to load into
-        let tr = document.createElement('tr');
-        // tr.setAttribute('class', 'someClass');
-        tr.innerHTML = document.getElementById('tableRows').innerHTML;
-        // Create a temporary <div> to load into
+        const table = document.getElementById("customersTable");
+        
+        //  Create a p element
         let p = document.createElement('p');
         p.setAttribute('class', 'warning-message');
-        p.innerHTML =  tr.innerHTML.innerHTML;
-        p.innerHTML = 'There is currently no records to display';
+        // p.innerHTML =  tr.innerHTML.innerHTML;
+        p.innerHTML = 'There are currently no records to display';
 
          // Write the <tr> to the HTML container
-        document.getElementById('tableBody').appendChild(p);
+        table.parentNode.insertBefore(p,table);
+        table.style.display = false;
     }
  // ******************************************   READ DATA FROM DATABASE END   ******************************************
 
@@ -255,7 +253,7 @@
         // }
 
         // make a fetch request to the create API endpoint.
-        let response = await fetch("http://localhost:3000/create_customers/", {
+        const response = await fetch("http://localhost:3000/create_customers/", {
             method: 'POST',
             mode: 'same-origin',
             cache: 'no-cache',
@@ -267,31 +265,27 @@
         })
         .then((response) => {
             console.log(response);
-        })
-        
-        console.log(response);
-        if (response[status] === 200) {
-            alert('Customer has been added successfully');
-            console.log('Customer added successfully');
+            if (response['status'] === 200) {
+                alert('Customer has been added successfully... \n\nThe browser will reload after 3 seconds of pressing the Ok button on this alert!');
+                console.log('Customer added successfully');
 
-            // wait for three seconds and refresh page.
-            setTimeout(() => { 
-                // Refresh the page
-                location.reload();
-            }, 3000);
-            
-        } else {
-            // errorMessage.value = "There was an error adding customer";
-            // errorMessage.style.display = true;
-            console.log('Error adding custoemr');
-        }
-        
+                // wait for three seconds and refresh page.
+                setTimeout(() => { 
+                    // Refresh the page
+                    location.reload();
+                }, 3000);
+            } else {
+                // errorMessage.value = "There was an error adding customer";
+                // errorMessage.style.display = true;
+                console.log('Error creating customer');
+            }
+        })
+        .catch ((error) => {
+            alert('Error creating customer')
+            console.log(error);
+        })
     }
    
-    
-
-
-
   // ******************************************   ADD DATA TO DATABASE END   ******************************************
 
     const editRowData = () => {}

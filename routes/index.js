@@ -29,14 +29,16 @@ router.post('/create_customers/', async (req, res) => {
         let newReq = [...req.body];                                                 // Create a new array of obejct using destructor                              
         newReq[0]['createdAt'] = Date.now();                                        // Create a key value pair with the date in the object.
         
-        await Customer.create(req.body)
+        let response = await Customer.create(req.body)
         .then((response)=> {
             console.log(response);
         })
+        res.status(200).send(response)
         // res.redirect('/customers.html');
          
 
     } catch (error) {
+        res.status(500).send(error);
         console.error(error);
         console.log(error);
     }
