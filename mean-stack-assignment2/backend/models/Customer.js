@@ -26,7 +26,8 @@ const CustomerSchema = new mongoose.Schema({
         type: Date, 
         default: Date.now
     }
-
+}, {
+    collection: 'customers'
 })
 
 module.exports = mongoose.model('Customers', CustomerSchema );

@@ -194,7 +194,6 @@
 
     // arrow function that displays the customers to table.
     const displayCustomers = (data) => {
-
         data.forEach((item, index) => {
             createTableRow(item, index);
         })
@@ -240,7 +239,7 @@
 
     // ******************************************   ADD/EDIT DATA TO DATABASE START   ******************************************
 
-
+    let customerId;
     // get values from the tables.
     const addCustomerRecord = async (event) => {
         event.preventDefault();
@@ -305,8 +304,43 @@
                     console.log(error);
                 })
         } else {
-            //if editFlag is true then update database(not implemented yet, for now will just refresh the page)
-            location.reload();
+            //Add the ID to the data 
+            let newReq = [...data];                                                                     // Create a new array of obejct using destructor                              
+            newReq[0]['_id'] = customerId;                                                       // Create a key value pair with the date in the object.
+
+            console.log(newReq);
+            // make a fetch request to the create API endpoint.
+            const response = await fetch("http://localhost:3000/update_customers/", {
+                method: 'POST',
+                mode: 'same-origin',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newReq)
+            })
+                .then((response) => {
+                    console.log(response);
+                    if (response['status'] === 200) {
+                        alert('Customer has been updated successfully... \n\nYour browser will refresh after 1 second of pressing the Ok button on this alert!');
+                        console.log('Customer updated successfully');
+
+                        // wait for three seconds and refresh page.
+                        // setTimeout(() => {
+                        //     // Refresh the page
+                        //     location.reload();
+                        // }, 1000);
+                    } else {
+                        // errorMessage.value = "There was an error adding customer";
+                        // errorMessage.style.display = true;
+                        console.log('Error updating customer');
+                    }
+                })
+                .catch((error) => {
+                    alert('Error updating customer')
+                    console.log(error);
+                })
         }
 
 
@@ -316,7 +350,7 @@
     // ******************************************   TOGGLE EDIT DATA MODE START   ******************************************
     const editRowData = async (index) => {
         editFlag = true;
-
+        customerId = document.getElementById(`customerId-${index}`).innerHTML;
         //update header & button to display form is in edit mode
         formMode = "Edit selected record";
         document.getElementById("formMode").innerHTML = formMode;

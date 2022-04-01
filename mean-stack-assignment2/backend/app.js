@@ -53,10 +53,24 @@ const path = require('path');                                                   
 // Routes
 // app.use('/', require('./routes/index'));
 
+// Allow cross site origin
+const cors = require('cors');
+app.use(cors());
 
 // app.use('/customers', require('./routes/customers'))
-app.use('/', require('./routes/index'));
+app.use('/api', require('./routes/index'));
+// app.use('/api/', require('./routes/index'));
+// app.use('/api', require('./routes/index'));
+// app.use('/api', require('./routes/index'));
+// app.use('/api', require('./routes/index'));
 
+// in NodeJS/Express (server)
+app.all('/api/*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "GET, POST","PUT");
+    next();
+});
 
-const PORT = process.env.PORT || 3000;                                                                                             // set the port number from the config variable 
+const PORT = process.env.PORT || 4000;                                                                                             // set the port number from the config variable 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));                                   // set the server listener to listen on port variable.
