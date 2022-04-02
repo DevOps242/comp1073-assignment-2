@@ -21,6 +21,7 @@ import { SupplierListComponent } from './components/suppliers/supplier-list/supp
 import { InventoryCreateComponent } from './components/inventory/inventory-create/inventory-create.component';
 import { InventoryEditComponent } from './components/inventory/inventory-edit/inventory-edit.component';
 import { InventoryListComponent } from './components/inventory/inventory-list/inventory-list.component';
+import { IndexComponent } from './components/index/index.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { InventoryListComponent } from './components/inventory/inventory-list/in
     SupplierListComponent,
     InventoryCreateComponent,
     InventoryEditComponent,
-    InventoryListComponent
+    InventoryListComponent,
+    IndexComponent
 
   ],
   imports: [

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+// Index Import
+import { IndexComponent } from './components/index/index.component';
 // Customer Imports
 import { CustomerCreateComponent } from './components/customers/customer-create/customer-create.component';
 import { CustomerListComponent } from './components/customers/customer-list/customer-list.component';
@@ -22,7 +24,7 @@ import { InventoryListComponent } from './components/inventory/inventory-list/in
 import { InventoryEditComponent } from './components/inventory/inventory-edit/inventory-edit.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '' },
+  { path: '', pathMatch: 'full', component: IndexComponent },
   // Customers URL's Routes
   { path: 'create-customer', component: CustomerCreateComponent },
   { path: 'edit-customer/:id', component: CustomerEditComponent },
@@ -44,7 +46,6 @@ const routes: Routes = [
   { path: 'edit-supplier/:id', component: SupplierEditComponent },
   { path: 'suppliers-list', component: SupplierListComponent },
 
-  
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
