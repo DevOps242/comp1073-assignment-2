@@ -10,18 +10,18 @@ export class EmployeeListComponent implements OnInit {
 
   Employee:any = [];
   constructor(private apiService: ApiService) { 
-    this.readCustomer();
+    this.readEmployee();
     
   }
   ngOnInit() {}
-  readCustomer(){
+  readEmployee(){
     this.apiService.getEmployees().subscribe((data) => {
      this.Employee = data;
     })    
   }
-  removeCustomer(employee, index) {
+  removeEmployee(employee, index) {
     if(window.confirm('Are you sure?')) {
-        this.apiService.deleteCustomer(employee._id).subscribe((data) => {
+        this.apiService.deleteEmployee(employee._id).subscribe((data) => {
           this.Employee.splice(index, 1);
         }
       )    
