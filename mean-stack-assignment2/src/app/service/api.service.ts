@@ -17,16 +17,16 @@ export class ApiService {
 
   // Create
   createCustomer(data): Observable<any> {
-    let url = `${this.baseUri}/customer/create`;
+    let url = `${this.baseUri}/customers/create`;
     return this.http.post(url, data).pipe(catchError(this.errorMgmt));
   }
   // Get all customers
   getCustomers() {
-    return this.http.get(`${this.baseUri}/customer/read`);
+    return this.http.get(`${this.baseUri}/customers/read`);
   }
   // Get customer
   getCustomer(id): Observable<any> {
-    let url = `${this.baseUri}/customer/read/:${id}`;
+    let url = `${this.baseUri}/customers/read/:${id}`;
     return this.http.get(url, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {};
@@ -36,14 +36,14 @@ export class ApiService {
   }
   // Update customer
   updateCustomer(id, data): Observable<any> {
-    let url = `${this.baseUri}/customer/update/${id}`;
+    let url = `${this.baseUri}/customers/update/${id}`;
     return this.http
       .put(url, data, { headers: this.headers })
       .pipe(catchError(this.errorMgmt));
   }
   // Delete customer
   deleteCustomer(id): Observable<any> {
-    let url = `${this.baseUri}/customer/delete/${id}`;
+    let url = `${this.baseUri}/customers/delete/${id}`;
     return this.http
       .delete(url, { headers: this.headers })
       .pipe(catchError(this.errorMgmt));

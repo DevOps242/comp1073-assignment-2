@@ -57,8 +57,7 @@ const path = require('path');                                                   
 const cors = require('cors');
 app.use(cors());
 
-// app.use('/customers', require('./routes/customers'))
-app.use('/api', require('./routes/index'));
+app.use('/api/customers', require('./routes/customers'));
 // app.use('/api/', require('./routes/index'));
 // app.use('/api', require('./routes/index'));
 // app.use('/api', require('./routes/index'));

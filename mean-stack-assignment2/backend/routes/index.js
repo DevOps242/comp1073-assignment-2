@@ -9,7 +9,7 @@ const Employee = require('../models/Employee');
 
 //@ desc    Customer
 //@ route   GET /customer
-router.get('/customer/read', async (req, res) => {
+router.get('/read', async (req, res) => {
     try {
         const customers = await Customer.find();
         res.status(200).json(customers);
@@ -20,7 +20,7 @@ router.get('/customer/read', async (req, res) => {
     }
 })
 
-router.get('/customer/read/:id', async (req, res) => {
+router.get('/read/:id', async (req, res) => {
     try {
         const id = req.params.id.substring(1);
 
@@ -35,7 +35,7 @@ router.get('/customer/read/:id', async (req, res) => {
 
 //@ desc    Customer
 //@ route   POST /create_customer
-router.post('/customer/create', async (req, res) => {
+router.post('/create', async (req, res) => {
     try {
         console.log(req.body);
         // Create a new array of obejct using destructor 
@@ -60,7 +60,7 @@ router.post('/customer/create', async (req, res) => {
 
 //@ desc    Customer
 //@ route   Update /customer
-router.put('/customer/update/:id', async (req, res, next) => {
+router.put('/update/:id', async (req, res, next) => {
     try {
         console.log(req.params.id);
         
@@ -72,16 +72,11 @@ router.put('/customer/update/:id', async (req, res, next) => {
                     console.log(error);
                     return res.send(500, {error:error})  
                 } else {
-                    res.json(data)
+                    res.status(200).send(data)
                     console.log('Data updated successfully');
                 }
             }
-        
         )
-
-
-        
-           
     } catch (error) {
         res.status(500).send(error);
         console.error(error);
@@ -92,7 +87,7 @@ router.put('/customer/update/:id', async (req, res, next) => {
 
 //@ desc    Customer
 //@ route   Delete /customer
-router.post('/customer/delete:id', async (req, res) => {
+router.post('/delete:id', async (req, res) => {
     try {
         console.log(req.body);
         const response = await Customer.deleteOne({_id : req.body[0]['customerId']})
