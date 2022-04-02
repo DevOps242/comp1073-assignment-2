@@ -4,11 +4,13 @@ import { CustomerCreateComponent } from './components/customer-create/customer-c
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
 import { CustomerEditComponent } from './components/customer-edit/customer-edit.component';
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'create-customer' },
+  { path: '', pathMatch: 'full', redirectTo: '' },
+  // Customers URL's Routes
   { path: 'create-customer', component: CustomerCreateComponent },
   { path: 'edit-customer/:id', component: CustomerEditComponent },
-  
   { path: 'customers-list', component: CustomerListComponent }  
+
+  
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

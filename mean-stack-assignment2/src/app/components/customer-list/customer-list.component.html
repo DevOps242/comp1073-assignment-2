@@ -23,10 +23,10 @@
           <td>{{customer.customerAddress}}</td>
           <td>{{customer.customerCountry}}</td>
           <td class="text-center edit-block">
-            <span class="edit" [routerLink]="['/edit-customer/', employee._id]">
+            <span class="edit" [routerLink]="['/edit-customer/', customer._id]">
               <button type="button" class="btn btn-success btn-sm">Edit</button>
             </span>
-            <span class="delete" (click)="removCustomer(customer, i)">
+            <span class="delete" (click)="removeCustomer(customer, i)">
               <button type="button" class="btn btn-danger btn-sm">Delete</button>
             </span>
           </td>

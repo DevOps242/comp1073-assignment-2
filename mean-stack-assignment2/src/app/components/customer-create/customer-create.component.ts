@@ -10,7 +10,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CustomerCreateComponent implements OnInit {
   submitted = false;
   customerForm: FormGroup;
-  CustomerProfile: any = ['Finance', 'BDM', 'HR', 'Sales', 'Admin'];
   constructor(
     public fb: FormBuilder,
     private router: Router,
@@ -22,21 +21,17 @@ export class CustomerCreateComponent implements OnInit {
   ngOnInit() {}
   mainForm() {
     this.customerForm = this.fb.group({
-      name: ['', [Validators.required]],
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
-        ],
-      ],
-      designation: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      customerName: ['', [Validators.required]],
+      customerRepName: ['',[Validators.required]],
+      customerAddress: ['',[Validators.required]],
+      customerPhoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      customerCountry: ['', [Validators.required]],
+      
     });
   }
   // Choose designation with select dropdown
-  updateProfile(e) {
-    this.customerForm.get('designation').setValue(e, {
+  updateCountry(e) {
+    this.customerForm.get('customerCountry').setValue(e, {
       onlySelf: true,
     });
   }
@@ -52,7 +47,7 @@ export class CustomerCreateComponent implements OnInit {
       return this.apiService.createCustomer(this.customerForm.value).subscribe({
         complete: () => {
           console.log('Customer successfully created!'),
-            this.ngZone.run(() => this.router.navigateByUrl('/customer-list'));
+            this.ngZone.run(() => this.router.navigateByUrl('/customers-list'));
         },
         error: (e) => {
           console.log(e);

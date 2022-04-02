@@ -26,7 +26,7 @@ export class ApiService {
   }
   // Get customer
   getCustomer(id): Observable<any> {
-    let url = `${this.baseUri}/customer/read/${id}`;
+    let url = `${this.baseUri}/customer/read/:${id}`;
     return this.http.get(url, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {};
@@ -43,7 +43,7 @@ export class ApiService {
   }
   // Delete customer
   deleteCustomer(id): Observable<any> {
-    let url = `${this.baseUri}/delete/${id}`;
+    let url = `${this.baseUri}/customer/delete/${id}`;
     return this.http
       .delete(url, { headers: this.headers })
       .pipe(catchError(this.errorMgmt));

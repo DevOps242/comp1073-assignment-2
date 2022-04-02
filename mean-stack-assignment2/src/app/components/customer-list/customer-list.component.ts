@@ -10,6 +10,7 @@ export class CustomerListComponent implements OnInit {
   Customer:any = [];
   constructor(private apiService: ApiService) { 
     this.readCustomer();
+    
   }
   ngOnInit() {}
   readCustomer(){
