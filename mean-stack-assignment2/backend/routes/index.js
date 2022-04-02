@@ -13,9 +13,7 @@ router.get('/customer/read', async (req, res) => {
     try {
         const customers = await Customer.find();
         res.status(200).json(customers);
-        // res.status().json('customers', {
-        //     customers
-        // })
+        
     } catch (error) {
         console.error(error);
         console.log(error);
@@ -62,16 +60,28 @@ router.post('/customer/create', async (req, res) => {
 
 //@ desc    Customer
 //@ route   Update /customer
-router.get('/customer/update/:id', async (req, res) => {
+router.put('/customer/update/:id', async (req, res, next) => {
     try {
-        Customer.findById(req.params.id, (error, data) => {
-            if(error) {
-                return next(error)
-            } else {
-                res.json(data);
-                res.status(200).send(response)
+        console.log(req.params.id);
+        
+        Customer.findByIdAndUpdate(
+            req.params.id, 
+            {$set: req.body}, 
+            (error, data) => {
+                if (error) {
+                    console.log(error);
+                    return res.send(500, {error:error})  
+                } else {
+                    res.json(data)
+                    console.log('Data updated successfully');
+                }
             }
-        })    
+        
+        )
+
+
+        
+           
     } catch (error) {
         res.status(500).send(error);
         console.error(error);
