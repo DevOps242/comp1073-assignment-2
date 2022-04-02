@@ -16,53 +16,19 @@ const HTML_PATH = __dirname + '/views/pages/';
 app.use(express.static(HTML_PATH));
 app.use(express.static(__dirname + '/views/'));
 
-const path = require('path');                                                                                                       // Require the system path 
-
-     
-// // @ routes Adding the routes for the Express frame work to serve.
-// // Index Page Endpoint
-// app.get('/index', function(req, res) {
-//     res.sendFile(path.join(HTML_PATH + 'index.html'));
-// });
-
-// // // Customers Page Endpoint
-// // app.get('/customers', function(req, res) {
-// //     res.sendFile(path.join(HTML_PATH + 'customers.html'));
-// // });
-
-// // Employees Page Endpoint
-// app.get('/employees', function(req, res) {
-//     res.sendFile(path.join(HTML_PATH + 'employees.html'));
-// });
-
-// // Inventory Page Endpoint
-// app.get('/inventory', function(req, res) {
-//     res.sendFile(path.join(HTML_PATH + 'inventory.html'));
-// });
-
-// // Products Page Endpoint
-// app.get('/products', function(req, res) {
-//     res.sendFile(path.join(HTML_PATH + 'products.html'));
-// });
-
-// // Suppliers Page Endpoint
-// app.get('/suppliers', function(req, res) {
-//     res.sendFile(path.join(HTML_PATH + 'suppliers.html'));
-// });
-
-// Routes
-// app.use('/', require('./routes/index'));
+const path = require('path');       
 
 // Allow cross site origin
 const cors = require('cors');
 app.use(cors());
 
+// Routes
+// app.use('/', require('./routes/index'));
 app.use('/api/customers', require('./routes/customers'));
 app.use('/api/employees', require('./routes/employees'));
-// app.use('/api/', require('./routes/index'));
-// app.use('/api', require('./routes/index'));
-// app.use('/api', require('./routes/index'));
-// app.use('/api', require('./routes/index'));
+app.use('/api/products', require('./routes/products'));
+app.use('/api/suppliers', require('./routes/suppliers'));
+app.use('/api/inventory', require('./routes/inventory'));
 
 // in NodeJS/Express (server)
 app.all('/api/*', function(req, res, next) {

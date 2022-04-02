@@ -3,14 +3,14 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 // Require the database schemas
-const Customer = require('../models/Customer');
+const Products = require('../models/Product');
 
-//@ desc    Customer
+//@ desc    Products
 //@ route   GET /customer
 router.get('/read', async (req, res) => {
     try {
-        const customers = await Customer.find();
-        res.status(200).json(customers);
+        const products = await Products.find();
+        res.status(200).json(products);
         
     } catch (error) {
         console.error(error);
@@ -22,8 +22,8 @@ router.get('/read/:id', async (req, res) => {
     try {
         const id = req.params.id.substring(1);
 
-        const customer = await Customer.findById(id);
-        res.status(200).json(customer);
+        const product = await Products.findById(id);
+        res.status(200).json(product);
 
     } catch (error) {
         console.error(error);
@@ -31,7 +31,7 @@ router.get('/read/:id', async (req, res) => {
     }
 })
 
-//@ desc    Customer
+//@ desc    Products
 //@ route   POST /create_customer
 router.post('/create', async (req, res) => {
     try {
@@ -43,7 +43,7 @@ router.post('/create', async (req, res) => {
         newReq[0]['createdAt'] = Date.now();                                        
        
         // Update the information to the database
-        let response = await Customer.create(newReq)
+        let response = await Products.create(newReq)
         .then((response) => {
             console.log(response);
         })
@@ -56,13 +56,13 @@ router.post('/create', async (req, res) => {
     }
 })
 
-//@ desc    Customer
+//@ desc    Products
 //@ route   Update /customer
 router.put('/update/:id', async (req, res, next) => {
     try {
         console.log(req.params.id);
         
-        Customer.findByIdAndUpdate(
+        Products.findByIdAndUpdate(
             req.params.id, 
             {$set: req.body}, 
             (error, data) => {
@@ -82,13 +82,13 @@ router.put('/update/:id', async (req, res, next) => {
     }
 })
 
-
-//@ desc    Customer
+//@ desc    Products
 //@ route   Delete /customer
-router.post('/delete:id', async (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
     try {
-        console.log(req.body);
-        const response = await Customer.deleteOne({_id : req.body[0]['customerId']})
+        console.log(req.params.id);
+        
+        const response = await Products.deleteOne({_id : req.params.id})
         .then((response) => {
             console.log(response);
         })

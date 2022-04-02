@@ -12,6 +12,15 @@ import { CustomerEditComponent } from './components/customers/customer-edit/cust
 import { EmployeeCreateComponent } from './components/employees/employee-create/employee-create.component';
 import { EmployeeEditComponent } from './components/employees/employee-edit/employee-edit.component';
 import { EmployeeListComponent } from './components/employees/employee-list/employee-list.component';
+import { ProductCreateComponent } from './components/products/product-create/product-create.component';
+import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
+import { ProductListComponent } from './components/products/product-list/product-list.component';
+import { SupplierCreateComponent } from './components/suppliers/supplier-create/supplier-create.component';
+import { SupplierEditComponent } from './components/suppliers/supplier-edit/supplier-edit.component';
+import { SupplierListComponent } from './components/suppliers/supplier-list/supplier-list.component';
+import { InventoryCreateComponent } from './components/inventory/inventory-create/inventory-create.component';
+import { InventoryEditComponent } from './components/inventory/inventory-edit/inventory-edit.component';
+import { InventoryListComponent } from './components/inventory/inventory-list/inventory-list.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +30,16 @@ import { EmployeeListComponent } from './components/employees/employee-list/empl
     CustomerEditComponent,
     EmployeeCreateComponent,
     EmployeeEditComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    ProductCreateComponent,
+    ProductEditComponent,
+    ProductListComponent,
+    SupplierCreateComponent,
+    SupplierEditComponent,
+    SupplierListComponent,
+    InventoryCreateComponent,
+    InventoryEditComponent,
+    InventoryListComponent
 
   ],
   imports: [
