@@ -1,1 +1,36 @@
-<p>product-list works!</p>
+<div class="container">
+    <!-- No data message -->
+    <p *ngIf="Product.length <= 0" class="no-data text-center">There is no products added yet!</p>
+    <!-- Employee list -->
+    <table class="table table-bordered" *ngIf="Product.length > 0">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Product ID</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Product Description</th>
+          <th scope="col">Product Unit Price</th>
+          <th scope="col">Product Quantity</th>
+          <th scope="col">Product Category</th>
+          <th scope="col center">Update</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of Product; let i = index">
+          <th scope="row">{{product._id}}</th>
+          <td>{{product.productName}}</td>
+          <td>{{product.productDescription}}</td>
+          <td>{{product.productUnitPrice}}</td>
+          <td>{{product.productQuantity}}</td>
+          <td>{{product.productCategory}}</td>
+          <td class="text-center edit-block">
+            <span class="edit" [routerLink]="['/edit-product/', product._id]">
+              <button type="button" class="btn btn-success btn-sm">Edit</button>
+            </span>
+            <span class="delete" (click)="removeProduct(product, i)">
+              <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

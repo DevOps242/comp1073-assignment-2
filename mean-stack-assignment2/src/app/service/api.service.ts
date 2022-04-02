@@ -83,7 +83,109 @@ deleteEmployee(id): Observable<any> {
     .pipe(catchError(this.errorMgmt));
 }
 
-  // Error handling
+// ******************************** Product end points****************************
+createProduct(data): Observable<any> {
+  let url = `${this.baseUri}/products/create`;
+  return this.http.post(url, data).pipe(catchError(this.errorMgmt));
+}
+// Get all products
+getProducts() {
+  return this.http.get(`${this.baseUri}/products/read`);
+}
+// Get product
+getProduct(id): Observable<any> {
+  let url = `${this.baseUri}/products/read/:${id}`;
+  return this.http.get(url, { headers: this.headers }).pipe(
+    map((res: Response) => {
+      return res || {};
+    }),
+    catchError(this.errorMgmt)
+  );
+}
+// Update product
+updateProduct(id, data): Observable<any> {
+  let url = `${this.baseUri}/products/update/${id}`;
+  return this.http
+    .put(url, data, { headers: this.headers })
+    .pipe(catchError(this.errorMgmt));
+}
+// Delete product
+deleteProduct(id): Observable<any> {
+  let url = `${this.baseUri}/products/delete/${id}`;
+  return this.http
+    .delete(url, { headers: this.headers })
+    .pipe(catchError(this.errorMgmt));
+}
+
+// ******************************** Suppliers end points****************************
+createSupplier(data): Observable<any> {
+  let url = `${this.baseUri}/suppliers/create`;
+  return this.http.post(url, data).pipe(catchError(this.errorMgmt));
+}
+// Get all suppliers
+getSuppliers() {
+  return this.http.get(`${this.baseUri}/suppliers/read`);
+}
+// Get supplier
+getSupplier(id): Observable<any> {
+  let url = `${this.baseUri}/suppliers/read/:${id}`;
+  return this.http.get(url, { headers: this.headers }).pipe(
+    map((res: Response) => {
+      return res || {};
+    }),
+    catchError(this.errorMgmt)
+  );
+}
+// Update supplier supplier
+updateSupplier(id, data): Observable<any> {
+  let url = `${this.baseUri}/suppliers/update/${id}`;
+  return this.http
+    .put(url, data, { headers: this.headers })
+    .pipe(catchError(this.errorMgmt));
+}
+// Delete supplier
+deleteSupplier(id): Observable<any> {
+  let url = `${this.baseUri}/suppliers/delete/${id}`;
+  return this.http
+    .delete(url, { headers: this.headers })
+    .pipe(catchError(this.errorMgmt));
+}
+
+// ******************************** Inventory end points****************************
+createInventory(data): Observable<any> {
+  let url = `${this.baseUri}/inventory/create`;
+  return this.http.post(url, data).pipe(catchError(this.errorMgmt));
+}
+// Get all inventory
+getInventorys() {
+  return this.http.get(`${this.baseUri}/inventory/read`);
+}
+// Get inventory
+getInventory(id): Observable<any> {
+  let url = `${this.baseUri}/inventory/read/:${id}`;
+  return this.http.get(url, { headers: this.headers }).pipe(
+    map((res: Response) => {
+      return res || {};
+    }),
+    catchError(this.errorMgmt)
+  );
+}
+// Update inventory
+updateInventory(id, data): Observable<any> {
+  let url = `${this.baseUri}/inventory/update/${id}`;
+  return this.http
+    .put(url, data, { headers: this.headers })
+    .pipe(catchError(this.errorMgmt));
+}
+// Delete inventory 
+deleteInventory(id): Observable<any> {
+  let url = `${this.baseUri}/inventory/delete/${id}`;
+  return this.http
+    .delete(url, { headers: this.headers })
+    .pipe(catchError(this.errorMgmt));
+}
+
+// ******************************** Error handling****************************
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const Products = require('../models/Product');
 
 //@ desc    Products
-//@ route   GET /customer
+//@ route   GET /product
 router.get('/read', async (req, res) => {
     try {
         const products = await Products.find();
@@ -32,10 +32,9 @@ router.get('/read/:id', async (req, res) => {
 })
 
 //@ desc    Products
-//@ route   POST /create_customer
+//@ route   POST /product
 router.post('/create', async (req, res) => {
     try {
-        console.log(req.body);
         // Create a new array of obejct using destructor 
         let newReq = [req.body];    
         
@@ -57,7 +56,7 @@ router.post('/create', async (req, res) => {
 })
 
 //@ desc    Products
-//@ route   Update /customer
+//@ route   Update /product
 router.put('/update/:id', async (req, res, next) => {
     try {
         console.log(req.params.id);
@@ -83,7 +82,7 @@ router.put('/update/:id', async (req, res, next) => {
 })
 
 //@ desc    Products
-//@ route   Delete /customer
+//@ route   Delete /product
 router.delete('/delete/:id', async (req, res) => {
     try {
         console.log(req.params.id);

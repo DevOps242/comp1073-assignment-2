@@ -1,1 +1,109 @@
-<p>product-edit works!</p>
+<div class="row justify-content-center">
+    <div class="col-md-4 register-employee">
+      <!-- form card register -->
+      <div class="card card-outline-secondary">
+        <div class="card-header">
+          <h3 class="mb-0 text-center">Edit Product</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="inputName">Name:</label>
+              <input class="form-control" type="text" formControlName="productName" />
+              <div
+                class="invalid-feedback"
+                *ngIf="submitted && myForm['productName'].errors?.['required']"
+              >
+               Product Name is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputName">Description:</label>
+                <input class="form-control" type="text" formControlName="productDescription" />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['productDescription'].errors?.['required']"
+                >
+                Product Description is required.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputVerify3">Unit Price:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="productUnitPrice"
+                />
+                <!-- error -->
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['productUnitPrice'].errors?.['required']"
+                >
+                  Enter product unit price.
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['productUnitPrice'].errors?.['pattern']"
+                >
+                  Enter Numbers Only
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputVerify3">Quantity:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="productQuantity"
+                />
+                <!-- error -->
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['productQuantity'].errors?.['required']"
+                >
+                  Enter product quantity.
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['productQuantity'].errors?.['pattern']"
+                >
+                  Enter Numbers Only
+                </div>
+              </div>
+
+            
+            <div class="form-group">
+              <label for="inputPassword3">Country</label>
+              <select
+                class="custom-select form-control"
+                (change)="updateCategory($event.target.value)"
+                formControlName="productCategory"
+              >
+              <option value="" selected>Choose a category...</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Baby Items">Baby Items</option>
+              <option value="Furnitures">Furnitures</option>
+              <option value="Food">Food</option>
+              </select>
+              <!-- error -->
+              <div
+                class="invalid-feedback"
+                *ngIf="submitted && myForm['productCategory'].errors?.['required']"
+              >
+                Choose category.
+              </div>
+            </div>
+
+            <div class="form-group text-center mt-3">
+              <button class="btn btn-success btn-lg btn-block" type="submit">
+                Update Product
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- form  -->
+    </div>
+  </div>
