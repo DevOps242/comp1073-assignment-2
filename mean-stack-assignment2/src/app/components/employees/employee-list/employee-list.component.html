@@ -1,1 +1,36 @@
-<p>employee-list works!</p>
+<div class="container">
+    <!-- No data message -->
+    <p *ngIf="Employee.length <= 0" class="no-data text-center">There is no employee added yet!</p>
+    <!-- Employee list -->
+    <table class="table table-bordered" *ngIf="Employee.length > 0">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Customer ID</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Employee Address</th>
+          <th scope="col">Department</th>
+          <th scope="col center">Update</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of Employee; let i = index">
+          <th scope="row">{{employee._id}}</th>
+          <td>{{employee.employeeFirstName}}</td>
+          <td>{{employee.employeeLastName}}</td>
+          <td>{{employee.employeePhoneNumber}}</td>
+          <td>{{employee.employeeAddress}}</td>
+          <td>{{employee.employeeDepartment}}</td>
+          <td class="text-center edit-block">
+            <span class="edit" [routerLink]="['/edit-employee/', employee._id]">
+              <button type="button" class="btn btn-success btn-sm">Edit</button>
+            </span>
+            <span class="delete" (click)="removeEmployee(employee, i)">
+              <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -1,1 +1,96 @@
-<p>employee-create works!</p>
+<div class="row justify-content-center">
+    <div class="col-md-4 register-employee">
+      <!-- form card register -->
+      <div class="card-body">
+        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="inputName">First Name:</label>
+            <input class="form-control" type="text" formControlName="employeeFirstName" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['employeeFirstName'].errors?.['required']"
+            >
+              Employee First Name is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputName">Last Name:</label>
+            <input class="form-control" type="text" formControlName="employeeLastName" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['employeeLastName'].errors?.['required']"
+            >
+              Employee Last Name is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputName">Address:</label>
+            <input class="form-control" type="text" formControlName="employeeAddress" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['employeeAddress'].errors?.['required']"
+            >
+              Employee Address is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputVerify3">Phone Number</label>
+            <input
+            class="form-control"
+            type="text"
+            formControlName="employeePhoneNumber"
+            />
+            <!-- error -->
+            <div
+            class="invalid-feedback"
+            *ngIf="submitted && myForm['employeePhoneNumber'].errors?.['required']"
+            >
+                Enter your phone number.
+            </div>
+            <div
+            class="invalid-feedback"
+            *ngIf="submitted && myForm['employeePhoneNumber'].errors?.['pattern']"
+            >
+            Enter Numbers Only
+            </div>
+      </div>
+
+          <div class="form-group">
+            <label for="inputPassword3">Country:</label>
+            <select
+              class="custom-select form-control"
+              (change)="updateDepartment($event.target.value)"
+              formControlName="employeeDepartment"
+            >
+              <option value="" selected>Choose a department...</option>
+              <option value="Information Technology">Information Technology</option>
+              <option value="Finance">Finance</option>
+              <option value="Legal">Legal</option>
+              <option value="Customer Experience">Customer Experience</option>
+            </select>
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['employeeDepartment'].errors?.['required']"
+            >
+              Choose department.
+            </div>
+          </div> 
+
+          
+          <div class="form-group mt-3 text-center">
+            <button class="btn btn-success btn-lg btn-block" type="submit">
+              Create Employee
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- form card register -->
+  </div>
