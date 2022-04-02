@@ -52,6 +52,7 @@ export class ProductEditComponent implements OnInit {
       });
     });
   }
+  
   updateProduct() {
     this.editForm = this.fb.group({
       productName: ['', [Validators.required]],

@@ -1,1 +1,138 @@
-<p>inventory-create works!</p>
+<div class="row justify-content-center">
+    <div class="col-md-4 register-employee">
+      <!-- form card register -->
+      <div class="card-body">
+        <form [formGroup]="inventoryForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+                <label for="inputPassword3">Product:</label>
+                <select
+                  class="custom-select form-control"
+                  (change)="updateProduct($event.target.value)"
+                  formControlName="productId"
+                >
+                  <option value="" selected>Choose a product...</option>
+                  <option
+                        *ngFor="let inventoryProduct of InventoryProducts[0]"
+                        value="{{ inventoryProduct['_id'] }}"
+                        >
+                        {{ inventoryProduct['productName']}} - ID: {{inventoryProduct['_id'] }}
+                    </option>
+                </select>
+                <!-- error -->
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['productId'].errors?.['required']"
+                >
+                  Choose product.
+                </div>
+            </div> 
+
+            <div class="form-group">
+                <label for="inputVerify3">Available Quantity:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="availableQty"
+                />
+                <!-- error -->
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['availableQty'].errors?.['required']"
+                >
+                  Enter inventory available quantity.
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['availableQty'].errors?.['pattern']"
+                >
+                  Enter Numbers Only
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputVerify3">Order Quantity:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="orderQty"
+                />
+                <!-- error -->
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['orderQty'].errors?.['required']"
+                >
+                  Enter inventory order quantity.
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['orderQty'].errors?.['pattern']"
+                >
+                  Enter Numbers Only
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputVerify3">Units:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="units"
+                />
+                <!-- error -->
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['units'].errors?.['required']"
+                >
+                  Enter inventory units.
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['units'].errors?.['pattern']"
+                >
+                  Enter Numbers Only
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputVerify3">Unit Price:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="unitPrice"
+                />
+                <!-- error -->
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['unitPrice'].errors?.['required']"
+                >
+                  Enter inventory units.
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && myForm['unitPrice'].errors?.['pattern']"
+                >
+                  Enter Numbers Only
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="inputVerify3">Total Value:</label>
+                <input
+                  class="form-control"
+                  (focus)="updateTotal($event.target.value)"
+                  type="text"
+                  formControlName="totalValue"
+                />
+            </div>
+          
+          <div class="form-group mt-3 text-center">
+            <button class="btn btn-success btn-lg btn-block" type="submit">
+              Create Inventory
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- form card register -->
+  </div>

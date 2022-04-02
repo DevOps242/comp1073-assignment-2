@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
 
 const InventorySchema = new mongoose.Schema({
-    productId: {
-        type: {type: mongoose.Schema.Types.ObjectId, ref: 'products'} 
-    }, 
+    product:  {type: mongoose.Types.ObjectId, ref: 'Products'}, 
     availableQty: {
         type: String, 
         required: true
@@ -28,8 +26,7 @@ const InventorySchema = new mongoose.Schema({
         default: Date.now
     },
 }, {
-        "collection" : "inventory",
-        productId: true
+        "collection" : "inventory"
     }
 )
 

@@ -9,12 +9,8 @@ const SupplierSchema = new mongoose.Schema({
         type: String, 
         required: true
     }, 
-    supplierProduct: {
-        type: {type: mongoose.Schema.Types.ObjectId, ref: 'products'}
-    },
-    supplierRepName: {
-        type: {type: mongoose.Schema.Types.ObjectId, ref: 'employees'}
-    }, 
+    supplierProduct: {type: mongoose.Schema.Types.ObjectId, ref: 'products'},
+    supplierRepName: {type: mongoose.Schema.Types.ObjectId, ref: 'employees'}, 
     supplierPhoneNumber: {
         type: String, 
         required: true
