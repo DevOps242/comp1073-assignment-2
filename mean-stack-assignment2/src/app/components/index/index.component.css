@@ -1,0 +1,12 @@
+.section-header{
+    margin: 40px;
+}
+
+.carousel-container{
+    margin-top: 20px;
+    border-left: 2px solid #FBAF00;
+    border-radius: 15px;
+    box-shadow: 5px 10px #FBAF00;
+    min-width: 70%;
+}
+
