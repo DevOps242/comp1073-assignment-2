@@ -311,7 +311,7 @@
   />
   <span>Welcome</span>
   <!-- NAV BAR -->
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">WHMS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -349,10 +349,7 @@
       <li><a class="dropdown-item" routerLink="/customers-list">View Customers</a></li>
       <li><a class="dropdown-item" routerLink="/create-customer">Add Customer</a></li>
     </ul>
-  </div>
-
-    <span>Test</span>
-    
+  </div>  
     <div class="spacer"></div>
    
 </div>
@@ -362,24 +359,12 @@
   <!-- Highlight Card -->
   <div class="card highlight-card card-small">
 
-
-    <span>{{ title }} app is running!</span>
-
-
-
   </div>
 
-  <router-outlet></router-outlet>
+ 
 
  
 
 </div>
 
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
+<router-outlet></router-outlet>
