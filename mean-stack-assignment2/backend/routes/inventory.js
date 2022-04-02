@@ -97,15 +97,23 @@ router.put('/update/:id', async (req, res, next) => {
 router.delete('/delete/:id', async (req, res) => {
     try {
        console.log(req.params.id);
-        const response = await Inventory.deleteOne({_id : req.params.id})
+        const response = await Inventory.deleteOne(
+            {_id : req.params.id}
+        )
+        .then((response) => {
+            console.log(response);
+        })
+        res.status(200).send(response);
+        console.log(req.body)
 
-        if (response.deletedCount > 0){
-            res.status(200).send(response);
-        } 
-        else {
-            res.status(500).send(error);
-        }
-        console.log(response);
+
+        // if (response.deletedCount > 0){
+        //     res.status(200).send(response);
+        // } 
+        // else {
+        //     res.status(500).send(error);
+        // }
+        // console.log(response);
         
         // .then((response) => {
         //     console.log(response);

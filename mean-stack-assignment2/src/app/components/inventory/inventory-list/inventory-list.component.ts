@@ -21,7 +21,7 @@ export class InventoryListComponent implements OnInit {
   }
   removeInventory(inventory, index) {
     if(window.confirm('Are you sure?')) {
-        this.apiService.deleteProduct(inventory._id).subscribe((data) => {
+        this.apiService.deleteInventory(inventory._id).subscribe((data) => {
           this.Inventory.splice(index, 1);
         }
       )    
