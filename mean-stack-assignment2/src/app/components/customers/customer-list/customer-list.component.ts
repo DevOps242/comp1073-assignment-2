@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './../../service/api.service';
+import { ApiService } from './../../../service/api.service';
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',

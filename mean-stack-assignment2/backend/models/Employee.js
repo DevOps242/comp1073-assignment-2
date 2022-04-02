@@ -28,9 +28,11 @@ const EmployeeSchema = new mongoose.Schema({
     createdAt: {
         type: Date, 
         default: Date.now
+    },
+}, {
+        "collection" : "employees"
     }
-
-})
+)
 
 module.exports = mongoose.model('Employees', EmployeeSchema );
 

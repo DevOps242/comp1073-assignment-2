@@ -15,6 +15,7 @@ export class ApiService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) {}
 
+  // ******************************** Customer end points****************************
   // Create
   createCustomer(data): Observable<any> {
     let url = `${this.baseUri}/customers/create`;
