@@ -2,6 +2,9 @@
 
 Topic: Distribution Warehouse <br />
 Reason For Topic: Warehouses have many different aspects that can easily be formed into a series of related tables. The group was also previously familiar with warehouses and how they operate.
+
+> Created by - Lucas Magnusson, Genevieve Simpson and Akeem Palmer 
+
 >>
 ### Database Schema - Collections
 ![Schema Image](./mean-stack-assignment2/src/assets/images/Schemas.png)
