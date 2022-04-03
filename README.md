@@ -7,6 +7,10 @@ Reason For Topic: Warehouses have many different aspects that can easily be form
 ![Schema Image](./mean-stack-assignment2/src/assets/images/Schemas.png)
 
 >>
+### CRUD - Eample 
+![Schema Image](./mean-stack-assignment2/src/assets/images/updateEx.png)
+
+>>
 ### Bonus - Dropdown and Carousel
 ![Schema Image](./mean-stack-assignment2/src/assets/images/bonus-dropdown-and-carousel.png)
 
