@@ -53,6 +53,7 @@ router.post('/create', async (req, res) => {
         
         inventory.product = product
         inventory.save();
+        console.log(inventory)
 
         res.status(200).send(inventory)
     

@@ -8,9 +8,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./supplier-create.component.css'],
 })
 export class SupplierCreateComponent implements OnInit {
-  SupplierProducts: any = []
   submitted = false;
   supplierForm: FormGroup;
+  SupplierProducts: any = []
+  SupplierReps: any = []
   constructor(
     public fb: FormBuilder,
     private router: Router,
@@ -19,11 +20,14 @@ export class SupplierCreateComponent implements OnInit {
   ) {
     this.mainForm();
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.getProducts();
+    this.getEmployees();
+  }
   mainForm() {
     this.supplierForm = this.fb.group({
       supplierName: ['', [Validators.required]],
-      supplierRepName: ['',[Validators.required]],
+      employeeId: ['',[Validators.required]],
       supplierAddress: ['',[Validators.required]],
       supplierPhoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       productId: ['', [Validators.required]],
@@ -31,19 +35,35 @@ export class SupplierCreateComponent implements OnInit {
   }
   // Choose designation with select dropdown
   updateProduct(e) {
-    this.supplierForm.get('supplierProduct').setValue(e, {
+    this.supplierForm.get('productId').setValue(e, {
       onlySelf: true,
     });
   }
+
+  updateEmployee(e) {
+    this.supplierForm.get('employeeId').setValue(e, {
+      onlySelf: true,
+    });
+  }
+
   getProducts() {
     return this.apiService.getProducts().subscribe((data) => {
       this.SupplierProducts.push(data);
     });
   }
+
+  getEmployees() {
+    return this.apiService.getEmployees().subscribe((data) => {
+      this.SupplierReps.push(data);
+      console.log(data);
+    });
+  }
+
   // Getter to access form control
   get myForm() {
     return this.supplierForm.controls;
   }
+
   onSubmit() {
     this.submitted = true;
     if (!this.supplierForm.valid) {
@@ -52,7 +72,7 @@ export class SupplierCreateComponent implements OnInit {
       return this.apiService.createSupplier(this.supplierForm.value).subscribe({
         complete: () => {
           console.log('Supplier successfully created!'),
-            this.ngZone.run(() => this.router.navigateByUrl('/supplier-list'));
+            this.ngZone.run(() => this.router.navigateByUrl('/suppliers-list'));
         },
         error: (e) => {
           console.log(e);

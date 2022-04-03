@@ -16,17 +16,30 @@
             </div>
           </div>
 
+
           <div class="form-group">
-            <label for="inputEmail3">Rep Name:</label>
-            <input class="form-control" type="text" formControlName="supplierRepName" />
+            <label for="inputPassword3">Employee Rep:</label>
+            <select
+              class="custom-select form-control"
+              (change)="updateEmployee($event.target.value)"
+              formControlName="employeeId"
+            >
+              <option value="" selected>Choose an employee...</option>
+              <option
+                    *ngFor="let employee of SupplierReps[0]"
+                    value="{{ employee._id }}"
+                    >
+                    {{ employee.employeeFirstName + ' ' + employee.employeeLastName}} - ID: {{employee._id }}
+                </option>
+            </select>
             <!-- error -->
             <div
               class="invalid-feedback"
-              *ngIf="submitted && myForm['supplierRepName'].errors?.['required']"
+              *ngIf="submitted && myForm['employeeId'].errors?.['required']"
             >
-                Supplier Rep Name is required.
+              Choose product.
             </div>
-          </div>
+        </div> 
 
           <div class="form-group">
             <label for="inputEmail3">Address:</label>

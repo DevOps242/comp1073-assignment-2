@@ -1,4 +1,4 @@
-<h1>Edit Supplier</h1>
+<h1></h1>
 <div class="row justify-content-center">
     <div class="col-md-4 register-employee">
       <!-- form card register -->
@@ -8,6 +8,7 @@
         </div>
         <div class="card-body">
           <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
             <div class="form-group">
               <label for="inputName">Supplier Name:</label>
               <input class="form-control" type="text" formControlName="supplierName" />
@@ -19,16 +20,29 @@
               </div>
             </div>
 
-            <div class="form-group">
-                <label for="inputName">Rep Name:</label>
-                <input class="form-control" type="text" formControlName="supplierRepName" />
-                <div
-                  class="invalid-feedback"
-                  *ngIf="submitted && myForm['supplierRepName'].errors?.['required']"
-                >
-                  Supplier Rep Name is required.
-                </div>
+           <div class="form-group">
+            <label for="inputPassword3">Employee Rep:</label>
+            <select
+              class="custom-select form-control"
+              (change)="updateEmployee($event.target.value)"
+              formControlName="employeeId"
+            >
+              <option value="" selected>Choose an employee...</option>
+              <option
+                    *ngFor="let employee of SupplierReps[0]"
+                    value="{{ employee._id }}"
+                    >
+                    {{ employee.employeeFirstName + ' ' + employee.employeeLastName}} - ID: {{employee._id }}
+                </option>
+            </select>
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['employeeId'].errors?.['required']"
+            >
+              Choose product.
             </div>
+          </div> 
 
             <div class="form-group">
                 <label for="inputName">Address:</label>

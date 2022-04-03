@@ -19,10 +19,10 @@
         <tr *ngFor="let supplier of Supplier; let i = index">
           <th scope="row">{{supplier._id}}</th>
           <td>{{supplier.supplierName}}</td>
-          <td>{{supplier.supplierRepName}}</td>
+          <td>{{supplier.employee.employeeFirstName + ' ' + supplier.employee.employeeLastName}}</td>
           <td>{{supplier.supplierPhoneNumber}}</td>
           <td>{{supplier.supplierAddress}}</td>
-          <td>{{inventory.product.productName}}</td>
+          <td>{{supplier.product.productName}}</td>
           <td class="text-center edit-block">
             <span class="edit" [routerLink]="['/edit-supplier/', supplier._id]">
               <button type="button" class="btn btn-success btn-sm">Edit</button>

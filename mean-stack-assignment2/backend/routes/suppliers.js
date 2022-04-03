@@ -9,7 +9,10 @@ const Suppliers = require('../models/Supplier');
 //@ route   GET /customer
 router.get('/read', async (req, res) => {
     try {
-        const suppliers = await Suppliers.find();
+        const suppliers = await Suppliers.find({})
+        .populate({path: 'product', model: "Products"})
+        .populate({path: 'employee', model: "Employees"});
+
         res.status(200).json(suppliers);
         
     } catch (error) {
@@ -32,22 +35,32 @@ router.get('/read/:id', async (req, res) => {
 })
 
 //@ desc    Suppliers
-//@ route   POST /create_customer
+//@ route   POST /create_supplier
 router.post('/create', async (req, res) => {
     try {
-        console.log(req.body);
         // Create a new array of obejct using destructor 
         let newReq = [req.body];    
         
         // Create a key value pair with the date in the object.
-        newReq[0]['createdAt'] = Date.now();                                        
-       
-        // Update the information to the database
+        newReq[0]['createdAt'] = Date.now();       
+        
+        console.log(newReq[0]);
+        
+         // Create the information in the database
         let response = await Suppliers.create(newReq)
-        .then((response) => {
-            console.log(response);
-        })
-        res.status(200).send(response)
+        
+        supplier = await Suppliers.findById(response[0]['_id'])
+        
+        // const product = mongoose.Types.ObjectId();
+        const product = mongoose.Types.ObjectId(newReq[0]['productId'])
+        const employee = mongoose.Types.ObjectId(newReq[0]['employeeId'])
+        
+        supplier.product = product;
+        supplier.employee = employee;
+    
+        supplier.save();
+        
+        res.status(200).send(supplier)
     
     } catch (error) {
         res.status(500).send(error);

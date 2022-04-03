@@ -11,10 +11,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 
 export class SupplierEditComponent implements OnInit {
-  SupplierProducts: any = []
   submitted = false;
   editForm: FormGroup;
   supplierData: Supplier[];
+  SupplierProducts: any = []
+  SupplierReps: any = []
   constructor(
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
@@ -22,20 +23,28 @@ export class SupplierEditComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit() {
+    this.getProducts();
+    this.getEmployees();
     this.updateSupplier();
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getSupplier(id);
     this.editForm = this.fb.group({
       supplierName: ['', [Validators.required]],
-      supplierRepName: ['', [Validators.required]],
+      employeeId: ['', [Validators.required]],
       supplierAddress: ['', [Validators.required]], 
-      supplierProduct: ['', [Validators.required]],
+      productId: ['', [Validators.required]],
       supplierPhoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
     });
   }
   // Choose options with select-dropdown
   updateProduct(e) {
-    this.editForm.get('supplierProduct').setValue(e, {
+    this.editForm.get('productId').setValue(e, {
+      onlySelf: true,
+    });
+  }
+
+  updateEmployee(e) {
+    this.editForm.get('employeeId').setValue(e, {
       onlySelf: true,
     });
   }
@@ -46,27 +55,35 @@ export class SupplierEditComponent implements OnInit {
     })
   }
 
+  getEmployees() {
+    return this.apiService.getEmployees().subscribe((data) => {
+      this.SupplierReps.push(data);
+    });
+  }
+
   // Getter to access form control
   get myForm() {
     return this.editForm.controls;
   }
+
   getSupplier(id) {
     this.apiService.getSupplier(id).subscribe((data) => {
       this.editForm.setValue({
         supplierName: data['supplierName'],
-        supplierRepName: data['supplierRepName'],
+        employeeId: data['employee'],
         supplierAddress: data['supplierAddress'],
+        productId: data['product'],
         supplierPhoneNumber: data['supplierPhoneNumber'],
-        supplierProduct: data['supplierProduct'],
       });
     });
   }
+  
   updateSupplier() {
     this.editForm = this.fb.group({
       supplierName: ['', [Validators.required]],
-      supplierRepName: ['', [Validators.required]],
+      employeeId: ['', [Validators.required]],
       supplierAddress: ['', [Validators.required]],
-      supplierCountry: ['', [Validators.required]],
+      productId: ['', [Validators.required]],
       supplierPhoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
     });
   }
@@ -79,7 +96,7 @@ export class SupplierEditComponent implements OnInit {
         let id = this.actRoute.snapshot.paramMap.get('id');
         this.apiService.updateSupplier(id, this.editForm.value).subscribe({
           complete: () => {
-            this.router.navigateByUrl('/supplier-list');
+            this.router.navigateByUrl('/suppliers-list');
             console.log('Content updated successfully!');
           },
           error: (e) => {
